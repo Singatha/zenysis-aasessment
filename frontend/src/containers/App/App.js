@@ -3,12 +3,14 @@ import Nav from 'react-bootstrap/Nav';
 import { Col, Row } from 'react-bootstrap';
 import Vaccines from '../Vaccines/Vaccines';
 import Cases from '../Cases/Cases';
+import logo from '../../images/logo.zenysis.png';
 import './App.css';
 
 function App() {
   return (
     <>
       <header>
+        <img src={logo} alt="Logo" />
         <h1>Covid Info</h1>
       </header>
       <main>
