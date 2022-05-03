@@ -12,7 +12,7 @@ An integration project that uses Flask Python Web Framework to fetch covid info 
 
 ## Screenshots
 
-![App Screenshot 1](./frontend/src/images/caese_display.png)
+![App Screenshot 1](./frontend/src/images/cases_display.png)
 ![App Screenshot 2](./frontend/src/images/vaccines_display.png)
 
 
@@ -33,12 +33,12 @@ $ python3 -m venv venv
 
 Activate virtualenv in macOs/Linux
 ```bash
-$ souce venv/bin/activate
+$ source venv/bin/activate
 ```
 
 Activate virtualenv in Windows
 ```bash
-> souce venv\Scripts\activate
+> venv\Scripts\activate
 ```
 
 Install dependencies
