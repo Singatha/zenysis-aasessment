@@ -20,7 +20,7 @@ function Cases() {
     }
 
     useEffect(() => {
-        fetch("http://127.0.0.1:5000/cases")
+        fetch(`http://127.0.0.1:5000/cases?country=France`)
           .then(res => res.json())
           .then(
             (result) => {
