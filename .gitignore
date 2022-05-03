@@ -57,3 +57,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+_pycache__/
+backend/__pycache__/*
+backend/tests/__pycache__/*
+backend/venv/
+venv/
