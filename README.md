@@ -1,7 +1,4 @@
-# zenysis-assessment
-
-
-# Project Title
+# Zenysis Assessment 
 
 An integration project that uses Flask Python Web Framework to fetch covid info from Media Group API, saves it in the database (Postgres) and then displays it on the frontend (React).
 
