@@ -7,6 +7,18 @@ An integration project that uses Flask Python Web Framework to fetch covid info 
 
 ## Overview
 
+- My Approach:
+    - So I considered fetching the covid info that is mostly commonly looked at which is cases and vaccines metrics.
+    - API endpoints GET /cases and /vaccines fetch this data, store in the database and return it to frontend.
+    - I would have liked to make endpoint(s) to fetch all the data on the database and visualize it on a graph on the frontend to show the change in the cases atrributes over time.
+
+
+## Screenshots
+
+![App Screenshot 1](./frontend/src/images/caese_display.png)
+![App Screenshot 2](./frontend/src/images/vaccines_display.png)
+
+
 ## Run Locally
 
 Clone the project
