@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import cross_origin
 import requests
 import json
 
@@ -15,12 +16,8 @@ migrate = Migrate(app, db)
 
 base_api_url = "https://covid-api.mmediagroup.fr/v1"
 
-
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
-
 @app.route("/cases")
+@cross_origin()
 def get_cases():
     request = requests.get("https://covid-api.mmediagroup.fr/v1/cases?country=France")
     data = request.json()
@@ -33,6 +30,7 @@ def get_cases():
     return data
 
 @app.route("/vaccines")
+@cross_origin()
 def get_vaccines():
     request = requests.get("https://covid-api.mmediagroup.fr/v1/vaccines?country=France")
     data = request.json()
