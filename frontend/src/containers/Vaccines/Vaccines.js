@@ -31,7 +31,7 @@ function Vaccines() {
     }
 
   useEffect(() => {
-      fetch("http://127.0.0.1:5000/vaccines")
+      fetch(`http://127.0.0.1:5000/vaccines?country=France`)
         .then(res => res.json())
         .then(
           (result) => {

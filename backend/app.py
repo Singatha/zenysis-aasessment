@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import cross_origin
+
 import requests
 import json
 
@@ -14,34 +15,59 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 migrate = Migrate(app, db)
 
-base_api_url = "https://covid-api.mmediagroup.fr/v1"
+base_api_url = "https://covid-api.mmediagroup.fr/v1/"
 
 @app.route("/cases")
 @cross_origin()
 def get_cases():
-    request = requests.get("https://covid-api.mmediagroup.fr/v1/cases?country=France")
-    data = request.json()
-    data = data["All"]
-    case = Case(data["confirmed"], data["recovered"], data["deaths"], data["country"])
-    
-    db.session.add(case)
-    db.session.commit()
+    try:
+        country_name = request.args.get('country')
+        response = requests.get(f"{base_api_url}cases", params={'country': country_name})
+        data = response.json()
+        data = data.get("All", {})
+    except requests.HTTPError as e:
+        print(e)
 
-    return data
+    try:
+        case = Case(
+            data.get("confirmed", 0),
+            data.get("recovered", 0),
+            data.get("deaths", 0),
+            data.get("country", "")
+        )
+        db.session.add(case)
+        db.session.commit()
+        return data
+    except Exception as e:
+        print(e)
+
+
 
 @app.route("/vaccines")
 @cross_origin()
 def get_vaccines():
-    request = requests.get("https://covid-api.mmediagroup.fr/v1/vaccines?country=France")
-    data = request.json()
-    data = data["All"]
-    vaccine = Vaccine(data["administered"], data["people_vaccinated"], data["people_partially_vaccinated"], data["country"])
-    
-    db.session.add(vaccine)
-    db.session.commit()
+    try:
+        country_name = request.args.get('country')
+        response = requests.get(f"{base_api_url}vaccines", params={'country': country_name})
+        data = response.json()
+        data = data.get("All", {})
+    except requests.HTTPError as e:
+        print(e)
 
-    return data
+    try:
+        vaccine = Vaccine(
+            data.get("administered", 0),
+            data.get("people_vaccinated", 0),
+            data.get("people_partially_vaccinated", 0),
+            data.get("country", "")
+        )
+    
+        db.session.add(vaccine)
+        db.session.commit()
+        return data
+    except Exception as e:
+        print(e)
 
 
 if __name__ == '__main__':
-   app.run()
+   app.run(debug=True)
