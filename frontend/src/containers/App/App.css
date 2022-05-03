@@ -1,0 +1,18 @@
+header {
+    background-color: #0AA1DD;
+    padding: 30px;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+.Case, .Vaccine {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
